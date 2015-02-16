@@ -9,17 +9,17 @@
 # Notes:  In these problems, we will explore how Linear Regression for classification works. As
 # with the Perceptron Learning Algorithm in Homework # 1, you will create your own
 # target function f and data set D. Take d = 2 so you can visualize the problem, and
-# assume X = [−1, 1] × [−1, 1] with uniform probability of picking each x ∈ X . In
+# assume X = [1, -1] x [1, -1] with uniform probability of picking each x \mem X . In
 # each run, choose a random line in the plane as your target function f (do this by
-# taking two random, uniformly distributed points in [−1, 1] × [−1, 1] and taking the
+# taking two random, uniformly distributed points in [1, -1] x [1, -1] and taking the
 # line passing through them), where one side of the line maps to +1 and the other maps
-# to −1. Choose the inputs xn of the data set as random points (uniformly in X ), and
+# to -1. Choose the inputs xn of the data set as random points (uniformly in X ), and
 # evaluate the target function on each xn to get the corresponding output yn.
 # Take N = 100. Use Linear Regression to find g and evaluate Ein, the fraction of
 # in-sample points which got classified incorrectly. Repeat the experiment 1000
-# times and take the average (keep the g’s as they will be used again in Problem
+# times and take the average (keep the g's as they will be used again in Problem
 # 6). Which of the following values is closest to the average Ein? (Closest is the
-# option that makes the expression |your answer −given option| closest to 0. Use
+# option that makes the expression |your answer - given option| closest to 0. Use
 # this definition of closest here and throughout.):
 #
 # ---------------------------

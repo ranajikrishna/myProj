@@ -5,14 +5,14 @@
 # Name: Question 1, Homework 2.
 #
 # Author: Ranaji Krishna.
-# 
+
 # Notes:  Run a computer simulation for flipping 1,000 virtual fair coins. Flip each coin independently
 # 10 times. Focus on 3 coins as follows: c1 is the first coin flipped, crand is a
 # coin chosen randomly from the 1,000, and cmin is the coin which had the minimum
-# frequency of heads (pick the earlier one in case of a tie). Let ν1, νrand, and νmin be
+# frequency of heads (pick the earlier one in case of a tie). Let v, rand, and min be
 # the fraction of heads obtained for the 3 respective coins out of the 10 tosses.
-# Run the experiment 100,000 times in order to get a full distribution of ν1, νrand, and
-# νmin (note that crand and cmin will change from run to run).:
+# Run the experiment 100,000 times in order to get a full distribution of v, rand, and
+# min (note that crand and cmin will change from run to run).:
 #
 # ---------------------------
 
@@ -41,6 +41,8 @@ def main (argv = None):
 	v_1 = np.mean(allFlips[:,c_1]);				
 	v_min = np.mean(allFlips[:,c_min]);
 	v_rand = np.mean(allFlips[:,c_rand]);
+
+	print 'The average value of v_min', v_min;
 
 if __name__ == '__main__':
 	status = main();
