@@ -20,7 +20,7 @@
 # times and take the average (keep the g's as they will be used again in Problem
 # 6). Which of the following values is closest to the average Ein? (Closest is the
 # option that makes the expression |your answer - given option| closest to 0. Use
-# this definition of closest here and throughout.):
+# this definition of closest here and throughout.)
 #
 # ---------------------------
 
