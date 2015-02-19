@@ -17,11 +17,11 @@ percepAlgo <- function(pts){
   
   while (error){
     error <- FALSE;
-    pts$est <- apply(pts,1, function(x) sign(c(1,x[1:2]) %*% w));     # Compute estimated classification using weights.
+    pts$classify <- apply(pts,1, function(x) sign(c(1,x[1:2]) %*% w));     # Compute estimated classification using weights.
     
     for(i in 1:nrow(pts)){
-      if (pts$sign[i] != pts$est[i]){                                 # Check for mis classification.
-        w <- w + pts$sign[i] * c(1, pts$x_value[i], pts$y_value[i]);  # Update weights.
+      if (pts$y_value[i] != pts$classify[i]){                                 # Check for mis classification.
+        w <- w + pts$y_value[i] * c(1, pts$x1_value[i], pts$x2_value[i]);  # Update weights.
         k <- k + 1;       # Iteration.
         error <- TRUE;    # For next iteration to pass.
       }
