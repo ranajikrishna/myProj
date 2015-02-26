@@ -1,2 +1,2 @@
 # myProj
-my projects contains algorithms developed in C, R and Python.
+myProj contains algorithms developed in C, R and Python.
