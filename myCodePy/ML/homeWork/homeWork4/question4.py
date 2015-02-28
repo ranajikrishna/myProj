@@ -1,14 +1,21 @@
 #
-# Name: Homework 4, Questions 5, 6 and 7.
+# Name: Homework 4, Questions 4, 5, 6 and 7.
 #
 # Author: Ranaji Krishna.
 #
 # Notes:
-# Consider the case where the target function f : [−1, 1] -> R is given by f(x) = sin(pi*x)
-# and the input probability distribution is uniform on [−1, 1]. Assume that the training
+# Consider the case where the target function f :[-1,1] -> R is given by f(x) = sin(pi*x)
+# and the input probability distribution is uniform on [-1,1]. Assume that the training
 # set has only two examples (picked independently), and that the learning algorithm
 # produces the hypothesis that minimizes the mean squared error on the examples.
-# 
+#
+# Question: 4
+# Assume the learning model consists of all hypotheses of the form h(x) = ax.
+# What is the expected value, \hat{g}(x), of the hypothesis produced by the learning
+# algorithm (expected value with respect to the data set)? Express your \hat{g}(x) as
+# \hat{a}x , and round \hat{a} to two decimal digits only, then match exactly to one of the
+# following answers.
+#
 # Question: 5
 # What is the closest value to the bias in this case? 
 #
@@ -16,7 +23,7 @@
 # What is the closest value to the variance in this case?
 #
 # Question: 7
-# Now, let’s change H. Which of the following learning models has the least
+# Now, let us chang H. Which of the following learning models has the least
 # expected value of out-of-sample error?
 # 
 # --------------------- 
@@ -113,5 +120,4 @@ def main(argv = None):
 
 if __name__ == '__main__':
 	status = main();
-	sys.exit(status);
-	
+	sys.exit(status);l
