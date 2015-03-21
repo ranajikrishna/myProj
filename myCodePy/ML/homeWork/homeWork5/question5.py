@@ -30,52 +30,52 @@ from sklearn.linear_model import LinearRegression
 from scipy.optimize import curve_fit
 
 
-def coord_descent(eta):
+def coord_descent(eta):				# Co-ordinate Descent method.
 
 	error = 1;
-	uv = np.array((1,1), dtype = "float");
+	uv = np.array((1,1), dtype = "float");	# Starting co-ordinates of uv.
 	itr = 0;
 	while (itr < 15):
-		dE_du = 2*(exp(uv[1]) + 2*uv[1]*exp(-uv[0]))*(uv[0]*exp(uv[1])-2*uv[1]*exp(-uv[0]));
-		dE_dv = 0	
-		error_vec = np.array((dE_du, dE_dv), dtype = "float");
-		mag = (dE_du**2 + dE_dv**2)**(0.5);
+		dE_du = 2*(exp(uv[1]) + 2*uv[1]*exp(-uv[0]))*(uv[0]*exp(uv[1])-2*uv[1]*exp(-uv[0]));	# Partial differential wrt u.
+		dE_dv = 0								
+		error_vec = np.array((dE_du, dE_dv), dtype = "float");					# Error vector.
+		mag = (dE_du**2 + dE_dv**2)**(0.5);							# Magnitude (not used!).
 		
-		v_unit = -1 * error_vec;
-		uv[0] = uv[0] + eta * v_unit[0];
+		v_unit = -1 * error_vec;								# Direction of steepest descent.
+		uv[0] = uv[0] + eta * v_unit[0];							# New u co-ordinates.
 
-		dE_dv = 2*(uv[0]*exp(uv[1]) - 2*exp(-uv[0]))*(uv[0]*exp(uv[1])-2*uv[1]*exp(-uv[0]));
+		dE_dv = 2*(uv[0]*exp(uv[1]) - 2*exp(-uv[0]))*(uv[0]*exp(uv[1])-2*uv[1]*exp(-uv[0]));	# Partial differential wrt v.
 	
 		dE_de = 0;
-		error_vec = np.array((dE_du, dE_dv), dtype = "float");
-		mag = (dE_du**2 + dE_dv**2)**(1/2);
+		error_vec = np.array((dE_du, dE_dv), dtype = "float");					# Error vector.
+		mag = (dE_du**2 + dE_dv**2)**(1/2);							# Magnitude (not used!).
 		
-		v_unit = -1 * error_vec;
-		uv[1] = uv[1] + eta * v_unit[1];
+		v_unit = -1 * error_vec;								# Direction of steepest descent.
+		uv[1] = uv[1] + eta * v_unit[1];							# New v co-ordinates.	
 
-		error =	(uv[0]*exp(uv[1]) - 2*uv[1]*exp(-uv[0]))**2; 
+		error =	(uv[0]*exp(uv[1]) - 2*uv[1]*exp(-uv[0]))**2; 					# Error.
 		itr += 1;		
 
 
 	return(itr, uv, error);
 
 	
-def grad_descent(eta):
+def grad_descent(eta):				# Gradient Decent method.
 
 	error = 1;
-	uv = np.array((1,1), dtype = "float");
+	uv = np.array((1,1), dtype = "float");	# Starting co-ordinate.
 	itr = 0;
-	while (error > 10**(-14)):
-		dE_du = 2*(exp(uv[1]) + 2*uv[1]*exp(-uv[0]))*(uv[0]*exp(uv[1])-2*uv[1]*exp(-uv[0]));
-		dE_dv = 2*(uv[0]*exp(uv[1]) - 2*exp(-uv[0]))*(uv[0]*exp(uv[1])-2*uv[1]*exp(-uv[0]));
+	while (error > 10**(-14)):		# Error bound.
+		dE_du = 2*(exp(uv[1]) + 2*uv[1]*exp(-uv[0]))*(uv[0]*exp(uv[1])-2*uv[1]*exp(-uv[0]));	# Partial differential wrt u.
+		dE_dv = 2*(uv[0]*exp(uv[1]) - 2*exp(-uv[0]))*(uv[0]*exp(uv[1])-2*uv[1]*exp(-uv[0]));	# Partial differential wrt v.
 	
-		error_vec = np.array((dE_du, dE_dv), dtype = "float");
-		mag = sqrt(dE_du**2 + dE_dv**2);
+		error_vec = np.array((dE_du, dE_dv), dtype = "float");					# Error vector.
+		mag = sqrt(dE_du**2 + dE_dv**2);							# Magnitude (not used!).	
 		
-		v_unit = -1 * error_vec;
-		uv = uv + eta * v_unit;
+		v_unit = -1 * error_vec;								# Direction of steepest decent.	
+		uv = uv + eta * v_unit;									# New (u,v) co-ordinates.	
 
-		error =	(uv[0]*exp(uv[1]) - 2*uv[1]*exp(-uv[0]))**2; 
+		error =	(uv[0]*exp(uv[1]) - 2*uv[1]*exp(-uv[0]))**2; 					# Error.	
 		itr += 1;		
 			
 	return(itr, uv);
