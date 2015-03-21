@@ -12,7 +12,12 @@
 # Question 6:
 # After running enough iterations such that the error has just dropped below 10^-14, wh# at are the closest values (in Euclidean distance) among the following choice# to the# final (u, v) you got in Problem 5?
 # Question 7:
-# Now, we will compare the performance of "coordinate descent". In each iteration, we have two steps along the 2 coordinates. Step 1 is to move only along the u# coordinate to reduce the error (assume first-order approximation holds like in gradient descent), and step 2 is to reevaluate and move only along the v coordina# te to reduce the error (again, assume first-order approximation holds). Use the same learning rate of eta = 0.1 as we did in gradient descent. What will the error# E(u,v) be closest to after 15 full iterations (30 steps)?
+# Now, we will compare the performance of "coordinate descent". In each iteration, we have two steps along the 
+# 2 coordinates. Step 1 is to move only along the u# coordinate to reduce the error (assume first-order 
+# approximation holds like in gradient descent), and step 2 is to reevaluate and move only along the v 
+# coordinate to reduce the error (again, assume first-order approximation holds). Use the same learning 
+# rate of eta = 0.1 as we did in gradient descent. What will the error# E(u,v) be closest to after 15 
+# full iterations (30 steps)?
 
 
 import sys;
