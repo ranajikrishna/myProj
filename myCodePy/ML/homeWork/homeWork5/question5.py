@@ -4,13 +4,14 @@
 # Author: Ranaji Krishna.
 #
 # Notes:
-# Consider the non linear error surface E(u,v) = (ue^v - 2ve^-u)^2. We start at the point # (u,v) = (1,1) and minimize this error using gradient descent in the uv s# pace. 
-# Use eta = 0.1 (learning rate, not step size).
+# Consider the non linear error surface E(u,v) = (ue^v - 2ve^-u)^2. We start at the point # (u,v) = (1,1) and 
+# minimize this error using gradient descent in the uv s# pace. Use eta = 0.1 (learning rate, not step size).
 # Question 5:
-# How many iterations (among the given choices) does it take for the error E(u, v) to # fall below 10^-14 for the first time? In your programs, make sure to use double 
-# precision to# get the needed accuracy.
+# How many iterations (among the given choices) does it take for the error E(u, v) to # fall below 10^-14 
+# for the first time? In your programs, make sure to use double precision to# get the needed accuracy.
 # Question 6:
-# After running enough iterations such that the error has just dropped below 10^-14, wh# at are the closest values (in Euclidean distance) among the following choice# to the# final (u, v) you got in Problem 5?
+# After running enough iterations such that the error has just dropped below 10^-14, wh# at are the closest values 
+# (in Euclidean distance) among the following choice# to the# final (u, v) you got in Problem 5?
 # Question 7:
 # Now, we will compare the performance of "coordinate descent". In each iteration, we have two steps along the 
 # 2 coordinates. Step 1 is to move only along the u# coordinate to reduce the error (assume first-order 
@@ -19,6 +20,7 @@
 # rate of eta = 0.1 as we did in gradient descent. What will the error# E(u,v) be closest to after 15 
 # full iterations (30 steps)?
 
+# ----------------- #
 
 import sys;
 import numpy as np;
@@ -85,9 +87,6 @@ def grad_descent(eta):				# Gradient Decent method.
 			
 	return(itr, uv);
 			
-	
-
-
 
 def main (argv = None):
 
@@ -102,7 +101,6 @@ def main (argv = None):
 	# --- Question 7 ---
 	[itr, uv, error] = coord_descent (eta);
 	print 'Error after 30 steps = %f' %error;
-
 
 
 if __name__ == '__main__':
