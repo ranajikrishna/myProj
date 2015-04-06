@@ -1,5 +1,5 @@
 #
-# Name: Homework 6, Question 2, 3.
+# Name: Homework 6, Question 2, 3, 4 , 5 and 6.
 #
 # Author: Ranaji Krishna.
 #
@@ -122,7 +122,7 @@ def main(argv = None):
 	print 'In-sample error %f' %in_err;
 	print 'Out-of-sample error %f' %out_err;
 	
-	# --- Question 3, 4, 5 ---
+	# --- Question 3, 4, 5 and 6 ---
 	k = -2;	
 	labda = 10**k;
 	[in_err1, out_err1]= weight_decay(data_IN, data_OUT, labda, data_REG, data_REG_OUT);	# Weight Decay optimization.
