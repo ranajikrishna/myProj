@@ -1,10 +1,13 @@
 #
-# Name: Homework 7, Question 1, 2, 3, 4 and 5..
+# Name: Homework 7, Question 7..
 #
 # Author: Ranaji Krishna.
 #
 # Notes:
-
+# You are given the data points (x, y): (-1, 0), (\rho, 1), (1, 0), \rho >= 0, 
+# and a choice between two models: constant { h0(x) = b } and linear { h1(x) = ax + b }. 
+# For which value of \rho would the two models be tied using leave-one-out 
+# cross-validation with the squared error measure?
 
 
 import sys;
