@@ -65,14 +65,7 @@ def main(argv = None):
 	data_train = [[sheet.cell_value(r,c) for c in range(sheet.ncols)] for r in range (sheet.nrows)]; # Import in-sample data from Excel.
 	data_train = pd.DataFrame(data_train, dtype = 'd');						 # Training data.
 
-	file_location = '/Users/vashishtha/myGitCode/ML/homeWorks/homeWork8/features.test.xlsx';	 # File location path.
-	workbook = xlrd.open_workbook(file_location);
-	sheet = workbook.sheet_by_index(0);
-
-	data_test = [[sheet.cell_value(r,c) for c in range(sheet.ncols)] for r in range (sheet.nrows)];	 # Import in-sample data from Excel.
-	data_test = pd.DataFrame(data_test, dtype = float);						 # Testing data.
-
-	# --- Question 7 to 9 ---
+	# --- Question 7 to 8 ---
 	x = 1; y = 5; 
 	d = 2;		 # Degrees.
 	iteration = 100; # No. iterations.
