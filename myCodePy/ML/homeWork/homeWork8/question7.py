@@ -1,6 +1,6 @@
 
 #
-# Name: Homework 8, Question 2 - 6.
+# Name: Homework 8, Question 7 & 8.
 #
 # Author: Ranaji Krishna.
 #
