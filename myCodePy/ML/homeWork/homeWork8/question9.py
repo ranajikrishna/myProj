@@ -52,7 +52,7 @@ def compute (data_tr, data_te, x, y, C):
 	model = svm.svm_train(prob, options);				   # Call libsvm.
 
 	# ***** Evaluate in-sample error. For out-sample error (Question 10) change data_tr to data_te ***** 
-	[labels, accuracy, values] = svm.svm_predict(np.array(data_tr[3]).tolist(), np.array(data_tr.loc[:,1:2]).tolist(), model, '-q');
+	[labels, accuracy, values] = svm.svm_predict(np.array(data_te[3]).tolist(), np.array(data_te.loc[:,1:2]).tolist(), model, '-q');
 
 	return(accuracy[0]);
 
@@ -74,7 +74,7 @@ def main(argv = None):
 
 	# --- Question 9 & 10 ---
 	x = 1; y = 5; 
-	for itr in range(6,-3, -2):
+	for itr in range(-6,3, 2):
 		C = float(1)/10**(itr);
 		e_in = 1 - 0.01 * compute(data_train, data_test, x, y, C);  # Compute in-sample error.
 		print 'For C = ' + str(C) + ' Ein = ' + str(e_in);	
