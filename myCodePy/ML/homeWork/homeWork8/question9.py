@@ -52,7 +52,7 @@ def compute (data_tr, data_te, x, y, C):
 	model = svm.svm_train(prob, options);				   # Call libsvm.
 
 	# ***** Evaluate in-sample error. For out-sample error (Question 10) change data_tr to data_te ***** 
-	[labels, accuracy, values] = svm.svm_predict(np.array(data_te[3]).tolist(), np.array(data_te.loc[:,1:2]).tolist(), model, '-q');
+	[labels, accuracy, values] = svm.svm_predict(np.array(data_tr[3]).tolist(), np.array(data_tr.loc[:,1:2]).tolist(), model, '-q');
 
 	return(accuracy[0]);
 
