@@ -22,13 +22,14 @@ Columns:
 /*
 SELECT *
 FROM pg_table_def
-WHERE tablename = 'daily_app_stats'
+WHERE tablename = 'subscriptions'
 AND schemaname = 'public';
 */
 
+
+
 select 
 t1.app_id,
---t1.subs_id,
 t1.first_payment,
 t1.second_payment,
 t2.avg_daily_users,
@@ -45,8 +46,8 @@ select distinct
 aps.id as app_id,
 min(bs.started_at) as subs_st,
 aps.created_at as app_ct,
-sum (case when bi.billing_cycle_number = 1 then mrr_amount else 0 end) as first_payment,
-sum (case when bi.billing_cycle_number = 2 then mrr_amount else 0 end) as second_payment
+sum (case when bi.billing_cycle_number = 1 then bi.mrr_amount else 0 end) as first_payment,
+sum (case when bi.billing_cycle_number = 2 then bi.mrr_amount else 0 end) as second_payment
 from billing_subscriptions as bs
 left join billing_invoices as bi on bs.id = bi.subscription_id
 left join apps as aps on aps.customer_id = bs.customer_id
@@ -54,19 +55,20 @@ where aps.contains_any_intercomrades = 0
 and aps.approved_to_send_email_status_id <> 3
 and to_char(bs.created_at, 'YYYY-MM-DD') > '2013-00-00'
 and bs.started_at is not null
-group by app_id, app_ct
-
+group by aps.id, app_ct
 
 ) as t1
 
 
 left join 
 
+
 (
 
 
 select distinct
 das.app_id as app_id,
+osub.app_id as old_id,
 avg(das.users) as avg_daily_users,
 round(avg(cast(daily_messages as double precision)),2) as avg_daily_msgs, 
 round(avg(cast(daily_comments as double precision)), 2) as avg_daily_cmts, 
@@ -75,16 +77,22 @@ round(avg(cast(daily_emails as double precision)),2) as avg_daily_mails,
 round(avg(cast(admins as double precision)),2) as avg_daily_admins 
 from daily_app_stats as das 
 left join apps as aps on aps.id = das.app_id
+left join subscriptions as osub on osub.app_id = das.app_id
 left join billing_subscriptions as subs on subs.customer_id = aps.customer_id
 where to_char(das.created_at, '%Y%m%d') >= to_char(subs.started_at, '%Y%m%d') 
-and to_char(das.created_at, '%Y%m%d') <= to_char(subs.started_at + INTERVAL '14 days', '%Y%m%d') 
+and case when old_id <= 5675
+then 
+to_char(das.created_at, '%Y%m%d') <= to_char(subs.started_at + INTERVAL '30 days', '%Y%m%d')
+else 
+to_char(das.created_at, '%Y%m%d') <= to_char(subs.started_at + INTERVAL '14 days', '%Y%m%d') 
+end
 and subs.id is not null and aps.contains_any_intercomrades = 0
-group by das.app_id 
+group by das.app_id, osub.app_id 
 
 
 )  
 
-as t2 on t1.app_id = t2.app_id
+as t2 on t2.app_id = t1.app_id
 
 left join (
 
