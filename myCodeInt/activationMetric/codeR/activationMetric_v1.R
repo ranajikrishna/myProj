@@ -14,6 +14,7 @@ library("grDevices");
 require("xlsx");
 require("lmtest");
 require("bstats");          # White Test.
+require("leave_out_cross_validation");
 library("fOptions");        # For GBSOptions.
 
 
@@ -47,8 +48,11 @@ null_app_id <- data[which(is.na(data$avg_daily_cnvs)), 1]; # App ids with NULL e
 
 # ---- Normalise Daily Comments, Conversations and  mails by total users -----
 #browser()
-data[which(data$tot_users != 0), 5:7] = data[which(data$tot_users != 0), 5:7]/data$tot_users[which(data$tot_users != 0)];
+data[which(data$avg_daily_users != 0), c(5,7)] = data[which(data$avg_daily_users != 0), c(5,7)]/data$avg_daily_users[which(data$avg_daily_users != 0)];
+#data[which(data$avg_daily_admins != 0), 6] = data[which(data$avg_daily_admins != 0), 6]/data$avg_daily_admins[which(data$avg_daily_admins != 0)];
 
+# ---- Normalise sum_tot_dur by total admins -----
+data[which(data$avg_daily_admins != 0), 2] = data[which(data$avg_daily_admins != 0), 2]/data$avg_daily_admins[which(data$avg_daily_mails != 0)];
 # -------- #
 
 
@@ -71,7 +75,7 @@ dev.off();
 
 # ===== Delete Outliers =====
 
-dur_app_id <- data[which(data$sum_tot_dur > 0.5e6), 1];        # App ids with total duration > 1e7.
+dur_app_id <- data[which(data$sum_tot_dur > 2e5), 1];        # App ids with total duration > 1e7.
 data <- data[!data$app_id %in% dur_app_id, ];                # Drop rows with NA in conversations.
 
 tot_users_app_id <- data[which(data$tot_users > 1.5e6), 1];    # App ids with average daily user > 2e4.
@@ -111,12 +115,34 @@ for (i in 2 : (dim(data)[2] - 1) ){
 }
 dev.off();
 
- regResults <- lm(data$second_payment ~ data$sum_tot_dur + data$tot_users + data$avg_daily_user + data$avg_daily_cnvs + data$avg_daily_cmts +
-                   data$avg_daily_mails + data$avg_daily_admins + data$time_to_trial, data,weight = 1/data[,2:9]^2); # + data$avg_daily_msgs 
+# ===== Regression ======
+# regResults <- glm(data$second_payment ~ data$sum_tot_dur + data$avg_daily_admins  + data$avg_daily_cmts 
+#                 + data$time_to_trial  + data$avg_daily_cnvs , data, family = quasipoisson()); 
 
-regResults <- lm(data$second_payment ~ data$sum_tot_dur + data$tot_users + data$avg_daily_user + data$avg_daily_admins 
-                 + data$time_to_trial, data); # + data$avg_daily_msgs 
+# data$avg_daily_msgs + data$avg_daily_cnvs + data$avg_daily_cmts + data$avg_daily_mails + + data$time_to_trial + data$avg_daily_user
 
+bin_val <- data$second_payment; 
+data <- cbind(data,bin_val);
+data$bin_val[data$bin_val != 0] <- 1;
+
+regResults <- glm(data$bin_val ~ data$sum_tot_dur + data$avg_daily_admins  + data$avg_daily_cmts 
+                  + data$time_to_trial  + data$avg_daily_cnvs , data, family = quasipoisson()); 
+#+ data$tot_users + data$avg_daily_users + data$avg_daily_mails
+
+
+# regResults <- glm(data$bin_val ~ data$sum_tot_dur +  data$avg_daily_cmts + data$avg_daily_mails + 
+#                    data$time_to_trial +  data$avg_daily_admins, data, family = binomial(link=logit)); 
+#  + data$tot_users + data$avg_daily_user + data$avg_daily_cnvs +
+
+
+source('/Users/rkrishna/ranajiIntercomCode/activationMetric/codeR/leave_out_cross_validation.R');   # Set directory
+
+cfusionMat <- leave_out_cross_validation(data[1:10,]);
+
+
+
+
+browser()
 
 # --- Test for normality of errors ---
 shapiro.test(as.matrix(regResults$residuals[1:5000]));
@@ -129,6 +155,11 @@ bptest(data$second_payment ~ data$sum_tot_dur + data$tot_users + data$avg_daily_
 # --- Test for Serially correlated errors ----
 bgtest(data$second_payment ~ data$sum_tot_dur + data$tot_users + data$avg_daily_user + data$avg_daily_cnvs + data$avg_daily_cmts +
          data$avg_daily_mails + data$avg_daily_admins + data$time_to_trial, data = data);
+
+# ---- Adjusting for Heteroskedasticity in Error ----
+
+#vcovHC(regResults);
+#coeftest(regResults, vcov = vcovHC);
 
 
 #CTRL + SHIFT + C
