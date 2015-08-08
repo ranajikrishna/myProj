@@ -29,10 +29,10 @@
 # your results.
 #
 
-import sys;
-import numpy as np;
-import random;
-import itertools;
+import sys
+import numpy as np
+import random
+import itertools
 from math import *	 # Math fxns.
 import pandas as pd
 
@@ -45,62 +45,62 @@ from scipy.optimize import curve_fit
 from random import randint
 
 def logistic(tmpSample, eta):					 # Logistic Regression.
-	n_train = 100;						 # Training sample.
-	w_old = np.array((1,1,1), dtype = float);		 # Old weights.
-	w = np.array((0,0,0), dtype = float);			 # New weights.
-	perm_array = range(0, n_train);				 # Permutation of poins in training sample.
-	epoch = 0;						 # No. epoch iterations.
-	error = 0;
+	n_train = 100						 # Training sample.
+	w_old = np.array((1,1,1), dtype = float)		 # Old weights.
+	w = np.array((0,0,0), dtype = float)			 # New weights.
+	perm_array = range(0, n_train)			 # Permutation of poins in training sample.
+	epoch = 0						 # No. epoch iterations.
+	error = 0
 	while (np.linalg.norm(w - w_old) > eta):
-		epoch += 1;
-		w_old = w;
-		i = 0;
+		epoch += 1
+		w_old = w
+		i = 0
 		while (i < n_train):
-			w = w +  eta * (tmpSample[3][perm_array[i]] * tmpSample.iloc[perm_array[i]][0:3])/(1 + exp(tmpSample[3][perm_array[i]] * np.dot(tmpSample.iloc[perm_array[i]][0:3], w)));	# Weight update.
-			i += 1;
+			w = w +  eta * (tmpSample[3][perm_array[i]] * tmpSample.iloc[perm_array[i]][0:3])/(1 + exp(tmpSample[3][perm_array[i]] * np.dot(tmpSample.iloc[perm_array[i]][0:3], w)))	# Weight update.
+			i += 1
 		
-		random.shuffle(perm_array);			 # New permutation of points.
+		random.shuffle(perm_array)			 # New permutation of points.
 	
-	error = 0;
+	error = 0
 	for i in range (n_train, np.size(tmpSample[0])):
-		error += log(1 + exp(-tmpSample[3][i] * np.dot(tmpSample.iloc[i][0:3], w)));	# Cross Entropy error.	
+		error += log(1 + exp(-tmpSample[3][i] * np.dot(tmpSample.iloc[i][0:3], w)))	# Cross Entropy error.	
 	
-	E_out = error/(np.size(tmpSample[0]) - n_train);	 # Out-of-sample error.
-	return(E_out,epoch);
+	E_out = error/(np.size(tmpSample[0]) - n_train)	 # Out-of-sample error.
+	return(E_out,epoch)
 
 def compute(n_samples, eta):
 
-	X = np.random.uniform(-1,1,4);				# Random pts. for True classification line.
-	inSample = np.ndarray((n_samples,4), dtype = float);	# Matrix to store values (cols: x-values, y-values, intercept(=-1), identification).
+	X = np.random.uniform(-1,1,4)				# Random pts. for True classification line.
+	inSample = np.ndarray((n_samples,4), dtype = float)	# Matrix to store values (cols: x-values, y-values, intercept(=-1), identification).
 	
-	inSample[:,0] = np.random.uniform(-1,1,n_samples);	# x1-values. 
- 	inSample[:,1] = np.random.uniform(-1,1,n_samples);	# x2-values.
- 	inSample[:,2] = -1*np.ones(n_samples);			# intercept.
+	inSample[:,0] = np.random.uniform(-1,1,n_samples)	# x1-values. 
+ 	inSample[:,1] = np.random.uniform(-1,1,n_samples)	# x2-values.
+ 	inSample[:,2] = -1*np.ones(n_samples)			# intercept.
 
-	linear_regression_true = LinearRegression();		# Separation line on x-y plane (pts. above this line are identified as +1).
-	linear_regression_true.fit(X.reshape((2,2))[:,0:1], X.reshape((2,2))[:,1:2]);	# Fit: Tru.
+	linear_regression_true = LinearRegression()		# Separation line on x-y plane (pts. above this line are identified as +1).
+	linear_regression_true.fit(X.reshape((2,2))[:,0:1], X.reshape((2,2))[:,1:2])	# Fit: Tru.
 	
-	inSample[:,3,np.newaxis] =  np.sign(inSample[:,1,np.newaxis] - linear_regression_true.predict(inSample[:,0,np.newaxis]));	# Identification.  
+	inSample[:,3,np.newaxis] =  np.sign(inSample[:,1,np.newaxis] - linear_regression_true.predict(inSample[:,0,np.newaxis]))	# Identification.  
 
-	inSample = pd.DataFrame(inSample);			# Convert to DataFrame.
+	inSample = pd.DataFrame(inSample)			# Convert to DataFrame.
 	
-	[E_out, epoch] = logistic(inSample, eta);		# Logistic Regression.
+	[E_out, epoch] = logistic(inSample, eta)		# Logistic Regression.
 
-	return(E_out,epoch);
+	return(E_out,epoch)
 
 
 def main(arg=None):
 
-	n_samples = 1000;					# Training and testing sample.
-	n_reps = 10;
-	eta = 0.01;						# Learning rate.
-	str_Val = np.ndarray((n_reps,2), dtype = float);
+	n_samples = 1000					# Training and testing sample.
+	n_reps = 10
+	eta = 0.01						# Learning rate.
+	str_Val = np.ndarray((n_reps,2), dtype = float)
 	for i in range(0,n_reps):
-		[str_Val[i,0], str_Val[i,1]] = compute(n_samples, eta);
-		print i;	
+		[str_Val[i,0], str_Val[i,1]] = compute(n_samples, eta)
+		print i
 
-	return(0);
+	return(0)
 
 if __name__ == '__main__':
-	status = main();
-	sys.exit(status);
+	status = main()
+	sys.exit(status)
