@@ -39,10 +39,10 @@
 # ---------------------------
 
 
-import sys;
-import numpy as np;
-import random;
-import itertools;
+import sys
+import numpy as np
+import random
+import itertools
 from math import *		        # Math fxns.
 import pandas as pd
 
@@ -56,79 +56,79 @@ import percepAlgo
 
 def compute(n_samples,outSamples,que):
 
-	X = np.random.uniform(-1,1,4);				# Random pts. for True classification line.
-	inSample = np.ndarray((n_samples,7), dtype = float);	# Matrix to store values (cols: x-values, y-values, identification, classification, verification).
+	X = np.random.uniform(-1,1,4)				# Random pts. for True classification line.
+	inSample = np.ndarray((n_samples,7), dtype = float)	# Matrix to store values (cols: x-values, y-values, identification, classification, verification).
 	
-	inSample[:,0] = np.random.uniform(-1,1,n_samples);		# x1-values. 
- 	inSample[:,1] = np.random.uniform(-1,1,n_samples);		# x2-values.
+	inSample[:,0] = np.random.uniform(-1,1,n_samples)		# x1-values. 
+ 	inSample[:,1] = np.random.uniform(-1,1,n_samples)		# x2-values.
 
-	linear_regression_true = LinearRegression();			# Separation line on x-y plane (pts. above this line are identified as +1).
-	linear_regression_true.fit(X.reshape((2,2))[:,0:1], X.reshape((2,2))[:,1:2]);	# Fit: Tru.
+	linear_regression_true = LinearRegression()			# Separation line on x-y plane (pts. above this line are identified as +1).
+	linear_regression_true.fit(X.reshape((2,2))[:,0:1], X.reshape((2,2))[:,1:2])	# Fit: Tru.
 	
-	inSample[:,2,np.newaxis] =  np.sign(inSample[:,1,np.newaxis] - linear_regression_true.predict(inSample[:,0,np.newaxis]));	# Identification.  
+	inSample[:,2,np.newaxis] =  np.sign(inSample[:,1,np.newaxis] - linear_regression_true.predict(inSample[:,0,np.newaxis]))	# Identification.  
 	
-	linear_regression_model = LinearRegression();
-	linear_regression_model.fit(inSample[:,0:2], inSample[:,2,np.newaxis]);			# Fit: Model
-	inSample[:,3,np.newaxis] = np.sign(linear_regression_model.predict(inSample[:,0:2]));	# Regression Classification. 
+	linear_regression_model = LinearRegression()
+	linear_regression_model.fit(inSample[:,0:2], inSample[:,2,np.newaxis])		# Fit: Model
+	inSample[:,3,np.newaxis] = np.sign(linear_regression_model.predict(inSample[:,0:2]))	# Regression Classification. 
 	
-	inSample = pd.DataFrame(inSample);			# Convert to DataFrame.
-	inSample[4]=np.where(inSample[2] != inSample[3],0,1);	# Regression Verificaion.	
+	inSample = pd.DataFrame(inSample)			# Convert to DataFrame.
+	inSample[4]=np.where(inSample[2] != inSample[3],0,1)	# Regression Verificaion.	
 
 	# ---- Code for question 6 ---
 
-	outSample = np.ndarray((outSamples,5), dtype = float);
- 	outSample[:,0] = np.random.uniform(-1,1,outSamples);		# x1-values. 
- 	outSample[:,1] = np.random.uniform(-1,1,outSamples);		# x2-values.
+	outSample = np.ndarray((outSamples,5), dtype = float)
+ 	outSample[:,0] = np.random.uniform(-1,1,outSamples)		# x1-values. 
+ 	outSample[:,1] = np.random.uniform(-1,1,outSamples)		# x2-values.
 
-	outSample[:,2,np.newaxis]= np.sign(outSample[:,1,np.newaxis] - linear_regression_true.predict(outSample[:,0,np.newaxis]));	# Estimate value, True.
-	outSample[:,3,np.newaxis]= np.sign(linear_regression_model.predict(outSample[:,0:2]));	                # Regression Classification.
+	outSample[:,2,np.newaxis]= np.sign(outSample[:,1,np.newaxis] - linear_regression_true.predict(outSample[:,0,np.newaxis]))	# Estimate value, True.
+	outSample[:,3,np.newaxis]= np.sign(linear_regression_model.predict(outSample[:,0:2]))	                # Regression Classification.
 
-	outSample = pd.DataFrame(outSample);				# Convert to DataFrame.
-	outSample[4]=np.where(outSample[2] != outSample[3],0,1);	# Regression Verificaion.	
+	outSample = pd.DataFrame(outSample)				# Convert to DataFrame.
+	outSample[4]=np.where(outSample[2] != outSample[3],0,1)	# Regression Verificaion.	
 	# --------  
 
 	# ----- Code for question 7 ---
 	n_iter = 0
 	if (que != 0):
-		[percepWgt, n_iter] = percepAlgo.percepAlgo([linear_regression_model.intercept_[0], linear_regression_model.coef_[0][0], linear_regression_model.coef_[0][1]], inSample);
+		[percepWgt, n_iter] = percepAlgo.percepAlgo([linear_regression_model.intercept_[0], linear_regression_model.coef_[0][0], linear_regression_model.coef_[0][1]], inSample)
 
 
 
-	return(sum(inSample[4]), sum(outSample[4]), n_iter);	
+	return(sum(inSample[4]), sum(outSample[4]), n_iter)
 
 def main (agrv = None):
 	
 	# --- Question 5 ----
-	n_trials = 1000; 	# Total no. trials. 
-	n_samples = 100;	# Sample points for Regression classification. 
-	inSample_success = np.ndarray((n_trials), dtype = int);	# Store success ratio of each trial.
+	n_trials = 1000 	# Total no. trials. 
+	n_samples = 100	# Sample points for Regression classification. 
+	inSample_success = np.ndarray((n_trials), dtype = int)	# Store success ratio of each trial.
 	# ----
 	
 	# --- Question 6 ----
-	out_samples = 1000;	# Total no. out-sample points.
-	outSample_success = np.ndarray((n_trials), dtype = int); # Store success ratio of each trial.
+	out_samples = 1000	# Total no. out-sample points.
+	outSample_success = np.ndarray((n_trials), dtype = int) # Store success ratio of each trial.
 	# -----
 	
 	for i in range(0,n_trials):
-		tmp= compute(n_samples,out_samples,0);	#  In- and out- samples classification analysis.
-		inSample_success[i]= tmp[0];	# Compute total no. success classification, in-sample. 
-		outSample_success[i]= tmp[1];	# Compute total no. success classification, out-sample. 
+		tmp= compute(n_samples,out_samples,0)	#  In- and out- samples classification analysis.
+		inSample_success[i]= tmp[0]	# Compute total no. success classification, in-sample. 
+		outSample_success[i]= tmp[1]	# Compute total no. success classification, out-sample. 
 		
-	print 'In-sample incorrect classification = ', 1- np.mean(inSample_success)/n_samples;
-	print 'Out-sample incorrect classification = ', 1- np.mean(outSample_success)/out_samples;
+	print 'In-sample incorrect classification = ', 1- np.mean(inSample_success)/n_samples
+	print 'Out-sample incorrect classification = ', 1- np.mean(outSample_success)/out_samples
 
 	# --- Question 7 ---
-	n_samples = 10;				           # Sample points for Perceptron classification.
-	perCep_iter = np.ndarray((n_trials), dtype = int); # Store success ratio of each trial.
+	n_samples = 10				           # Sample points for Perceptron classification.
+	perCep_iter = np.ndarray((n_trials), dtype = int) # Store success ratio of each trial.
 	
 	for i in range(0,n_trials):
-		tmp= compute(n_samples,out_samples,1);	# Perceptron Analysis.
-		perCep_iter[i]= tmp[2];			# Store iteration for Perceptron to converge. 
+		tmp= compute(n_samples,out_samples,1)	# Perceptron Analysis.
+		perCep_iter[i]= tmp[2]			# Store iteration for Perceptron to converge. 
 
-	print 'Average no. iterations for Perceptron convergence = ', np.mean(perCep_iter);
+	print 'Average no. iterations for Perceptron convergence = ', np.mean(perCep_iter)
 	
 	return(0);
 
 if __name__ == '__main__':
-	status = main();
-	sys.exit(status);
+	status = main()
+	sys.exit(status)
