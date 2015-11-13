@@ -36,7 +36,7 @@ from pybrain.utilities           import percentError
 from pybrain.tools.shortcuts     import buildNetwork
 from pybrain.supervised.trainers import BackpropTrainer
 from pybrain.structure.modules   import SoftmaxLayer
-#from pybrain.datasets.supervised import SupervisedDataSet as SDS
+from pybrain.datasets.supervised import SupervisedDataSet as SDS
 from pybrain.structure 		 import LinearLayer, SigmoidLayer
 from pybrain.structure 		 import FeedForwardNetwork
 from pybrain.structure 		 import FullConnection

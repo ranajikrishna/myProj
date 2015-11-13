@@ -1,36 +1,38 @@
 #
-# Name: Homework 7, Question 8 - 10.
-#
-# Author: Ranaji Krishna.
-#
-# Notes:
-# Notice: Quadratic Programming packages sometimes need tweaking and have numeri- cal issues, and this 
-# is characteristic of packages you will use in practical ML situations. Your understanding of support
-# vectors will help you get to the correct answers.
-# In the following problems, we compare PLA to SVM with hard margin1 on linearly separable data sets.
-# For each run, you will create your own target function f and data set D. Take d = 2 and choose a random
-# line in the plane as your target function f (do this by taking two random, uniformly distributed
-# points on [-1, 1] x [-1, 1] and taking the line passing through them), where one side of the line 
-# maps to +1 and the other maps to -1. Choose the inputs xn of the data set as random points 
-# in X = [-1, 1] x [-1, 1], and evaluate the target function on each xn to get the corresponding 
-# output yn. If all data points are on one side of the line, discard the run and start a new run.
-# Start PLA with the all-zero vector and pick the misclassified point for each PLA iteration at 
-# random. Run PLA to find the final hypothesis gPLA and measure the disagreement between f 
-# and gPLA as P[f(x) ~= gPLA(x)] (you can either calculate this exactly, or approximate it by 
-# generating a sufficiently large, separate set of points to evaluate it). Now, run SVM
-# on the same data to find the final hypothesis gSVM by solving
-# 			min (w,b)  0.5 * w^Tw
-#			s.t. y_n(w^T* x_n + b) >= 1
-# using quadratic programming on the primal or the dual problem. 
-# Measure the dis-agreement between f and gSVM as P[f(x) ~= gSVM(x)], and count the number of 
-# support vectors you get in each run.
-# Question 8:
-# For N = 10, repeat the above experiment for 1000 runs. How often is gSVM better than gPLA in approximating f?
-# Question 9:
-# For N = 100, repeat the above experiment for 1000 runs. How often is gSVM better than gPLA in approximating f? 
-# Question 10:
-# For the case N = 100, which of the following is the closest to the average number of support 
-# vectors of gSVM (averaged over the 1000 runs)?
+'''
+ Name: Homework 7, Question 8 - 10.
+
+ Author: Ranaji Krishna.
+
+ Notes:
+ Notice: Quadratic Programming packages sometimes need tweaking and have numeri- cal issues, and this 
+ is characteristic of packages you will use in practical ML situations. Your understanding of support
+ vectors will help you get to the correct answers.
+ In the following problems, we compare PLA to SVM with hard margin1 on linearly separable data sets.
+ For each run, you will create your own target function f and data set D. Take d = 2 and choose a random
+ line in the plane as your target function f (do this by taking two random, uniformly distributed
+ points on [-1, 1] x [-1, 1] and taking the line passing through them), where one side of the line 
+ maps to +1 and the other maps to -1. Choose the inputs xn of the data set as random points 
+ in X = [-1, 1] x [-1, 1], and evaluate the target function on each xn to get the corresponding 
+ output yn. If all data points are on one side of the line, discard the run and start a new run.
+ Start PLA with the all-zero vector and pick the misclassified point for each PLA iteration at 
+ random. Run PLA to find the final hypothesis gPLA and measure the disagreement between f 
+ and gPLA as P[f(x) ~= gPLA(x)] (you can either calculate this exactly, or approximate it by 
+ generating a sufficiently large, separate set of points to evaluate it). Now, run SVM
+ on the same data to find the final hypothesis gSVM by solving
+ 			min (w,b)  0.5 * w^Tw
+			s.t. y_n(w^T* x_n + b) >= 1
+ using quadratic programming on the primal or the dual problem. 
+ Measure the dis-agreement between f and gSVM as P[f(x) ~= gSVM(x)], and count the number of 
+ support vectors you get in each run.
+ Question 8:
+ For N = 10, repeat the above experiment for 1000 runs. How often is gSVM better than gPLA in approximating f?
+ Question 9:
+ For N = 100, repeat the above experiment for 1000 runs. How often is gSVM better than gPLA in approximating f? 
+ Question 10:
+ For the case N = 100, which of the following is the closest to the average number of support 
+ vectors of gSVM (averaged over the 1000 runs)?
+'''
 
 import sys
 import numpy as np

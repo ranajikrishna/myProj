@@ -1,41 +1,41 @@
 
 
 # ---------------------------
-#
-# Name: Homework 2, Question 5,6 and 7.
-#
-# Author: Ranaji Krishna.
-# 
-# Notes:  In these problems, we will explore how Linear Regression for classification works. As
-# with the Perceptron Learning Algorithm in Homework # 1, you will create your own
-# target function f and data set D. Take d = 2 so you can visualize the problem, and
-# assume X = [1, -1] x [1, -1] with uniform probability of picking each x \mem X . In
-# each run, choose a random line in the plane as your target function f (do this by
-# taking two random, uniformly distributed points in [1, -1] x [1, -1] and taking the
-# line passing through them), where one side of the line maps to +1 and the other maps
-# to -1. Choose the inputs xn of the data set as random points (uniformly in X ), and
-# evaluate the target function on each xn to get the corresponding output yn.
-#
-# Question 5:
-# Take N = 100. Use Linear Regression to find g and evaluate Ein, the fraction of
-# in-sample points which got classified incorrectly. Repeat the experiment 1000
-# times and take the average (keep the g's as they will be used again in Problem
-# 6). Which of the following values is closest to the average Ein? (Closest is the
-# option that makes the expression |your answer - given option| closest to 0. Use
-# this definition of closest here and throughout.)
-#
-# Question 6: 
-# Now, generate 1000 fresh points and use them to estimate the out-of-sample 
-# error Eout of g that you got in Problem 5 (number of misclassified out-of-sample points / total number of out-of-sample points).
-# Again, run the experiment 1000 times and take the average. Which value is closest to the average Eout?
-#
-# Question 7:
-# Now, take N = 10. After finding the weights using Linear Regression, use them as a vector 
-# of initial weights for the Perceptron Learning Algorithm. Run PLA until it converges to a 
-# final vector of weights that completely separates all the in-sample points. Among the choices below, 
-# what is the closest value to the average number of iterations (over 1000 runs) that PLA takes to converge?
-# (When implementing PLA, have the algorithm choose a point randomly from the set of misclassified points at each iteration)
-#
+'''
+ Name: Homework 2, Question 5,6 and 7.
+
+ Author: Ranaji Krishna.
+ 
+ Notes:  In these problems, we will explore how Linear Regression for classification works. As
+ with the Perceptron Learning Algorithm in Homework # 1, you will create your own
+ target function f and data set D. Take d = 2 so you can visualize the problem, and
+ assume X = [1, -1] x [1, -1] with uniform probability of picking each x \mem X . In
+ each run, choose a random line in the plane as your target function f (do this by
+ taking two random, uniformly distributed points in [1, -1] x [1, -1] and taking the
+ line passing through them), where one side of the line maps to +1 and the other maps
+ to -1. Choose the inputs xn of the data set as random points (uniformly in X ), and
+ evaluate the target function on each xn to get the corresponding output yn.
+
+ Question 5:
+ Take N = 100. Use Linear Regression to find g and evaluate Ein, the fraction of
+ in-sample points which got classified incorrectly. Repeat the experiment 1000
+ times and take the average (keep the g's as they will be used again in Problem
+ 6). Which of the following values is closest to the average Ein? (Closest is the
+ option that makes the expression |your answer - given option| closest to 0. Use
+ this definition of closest here and throughout.)
+
+ Question 6: 
+ Now, generate 1000 fresh points and use them to estimate the out-of-sample 
+ error Eout of g that you got in Problem 5 (number of misclassified out-of-sample points / total number of out-of-sample points).
+ Again, run the experiment 1000 times and take the average. Which value is closest to the average Eout?
+
+ Question 7:
+ Now, take N = 10. After finding the weights using Linear Regression, use them as a vector 
+ of initial weights for the Perceptron Learning Algorithm. Run PLA until it converges to a 
+ final vector of weights that completely separates all the in-sample points. Among the choices below, 
+ what is the closest value to the average number of iterations (over 1000 runs) that PLA takes to converge?
+ (When implementing PLA, have the algorithm choose a point randomly from the set of misclassified points at each iteration)
+'''
 # ---------------------------
 
 

@@ -1,37 +1,39 @@
 #
-# Name: Homework 7, Question 1, 2, 3, 4 and 5..
-#
-# Author: Ranaji Krishna.
-#
-# Notes:
-# In the following problems, use the data provided in the files in.dta and out.dta for Homework # 6. 
-# We are going to apply linear regression with a nonlinear transformation for classification 
-# (without regularization). The nonlinear transformation is given by φ0 through φ7 which transform (x1, x2) into
-# 			1 x1 x2 x21 x2 x1x2 |x1 -x2| |x1 + x2|
-# To illustrate how taking out points for validation affects the performance, we will consider the hypotheses 
-# trained on Dtrain (without restoring the full D for training after validation is done).
-#
-# Question: 1
-# Split in.dta into training (first 25 examples) and validation (last 10 examples). Train on the 25 examples only, 
-# using the validation set of 10 examples to select between five models that apply linear regression to \phi_0 
-# through \phi_k, with k = 3,4,5,6,7. smallest?
-#
-# Question: 2
-# Evaluate the out-of-sample classification error using out.dta on the 5 models to see how well the validation 
-# set predicted the best of the 5 models. For which model is the out-of-sample classification error smallest?
-#
-# Question: 3
-# Reverse the role of training and validation sets; now training with the last 10 examples and validating 
-# with the first 25 examples. For which model is the classification error on the validation set smallest?
-#
-# Question: 4
-# Once again, evaluate the out-of-sample classification error using out.dta on the 5 models to see how well 
-# the validation set predicted the best of the 5 models. For which model is the out-of-sample classification error smallest?
-#
-# Question: 5
-# What values are closest in Euclidean distance to the out-of-sample classification error obtained
-# for the model chosen in Problems 1 and 3, respectively
-#
+'''
+ Name: Homework 7, Question 1, 2, 3, 4 and 5..
+
+ Author: Ranaji Krishna.
+
+ Notes:
+ In the following problems, use the data provided in the files in.dta and out.dta for Homework # 6. 
+ We are going to apply linear regression with a nonlinear transformation for classification 
+ (without regularization). The nonlinear transformation is given by φ0 through φ7 which transform (x1, x2) into
+ 			1 x1 x2 x21 x2 x1x2 |x1 -x2| |x1 + x2|
+ To illustrate how taking out points for validation affects the performance, we will consider the hypotheses 
+ trained on Dtrain (without restoring the full D for training after validation is done).
+
+ Question: 1
+ Split in.dta into training (first 25 examples) and validation (last 10 examples). Train on the 25 examples only, 
+ using the validation set of 10 examples to select between five models that apply linear regression to \phi_0 
+ through \phi_k, with k = 3,4,5,6,7. smallest?
+
+ Question: 2
+ Evaluate the out-of-sample classification error using out.dta on the 5 models to see how well the validation 
+ set predicted the best of the 5 models. For which model is the out-of-sample classification error smallest?
+
+ Question: 3
+ Reverse the role of training and validation sets; now training with the last 10 examples and validating 
+ with the first 25 examples. For which model is the classification error on the validation set smallest?
+
+ Question: 4
+ Once again, evaluate the out-of-sample classification error using out.dta on the 5 models to see how well 
+ the validation set predicted the best of the 5 models. For which model is the out-of-sample classification error smallest?
+
+ Question: 5
+ What values are closest in Euclidean distance to the out-of-sample classification error obtained
+ for the model chosen in Problems 1 and 3, respectively
+
+'''
 
 import sys
 import numpy as np

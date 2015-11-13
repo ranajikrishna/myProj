@@ -1,33 +1,34 @@
-#
-# Name: Homework 5, Question 8, 9.
-#
-# Author: Ranaji Krishna.
-#
-# Notes:
-# In this problem you will create your own target function f (probability in this case) and data set D to see 
-# how Logistic Regression works. For simplicity, we will take f to be a 0/1 probability so y is a deterministic 
-# function of x.
-# Take d=2 so you can visualize the problem, and let X = [-1, 1]x[-1, 1] with uniform probability of picking 
-# each x \ismem X . Choose a line in the plane as the boundary between f(x) = 1 (where y has to be +1) and f(x) = 0
-# (where y has to be -1) by taking two random, uniformly distributed points from X and taking the line passing through
-# 4 them as the boundary between y = +1 or -1. Pick N = 100 training points at random from X, and evaluate the outputs 
-# yn for each of these points xn. Run Logistic Regression with Stochastic Gradient Descent to find g, and 
-# estimate Eout (the cross entropy error) by generating a sufficiently large, separate set of points to evaluate the 
-# error. Repeat the experiment for 100 runs with different targets and take the average. Initialize the weight 
-# vector of Logistic Regression to all zeros in each run. Stop the algorithm when |w(t-1) - w(t)| < 0.01, 
-# where w(t) denotes the weight vector at the end of epoch t. An epoch is a full pass through the N data points 
-# (use a random permutation of 1, 2, . . . , N to present the data points to the algorithm within each epoch, 
-# and use different permutations for different epochs). Use a learning rate of 0.01.
+'''
+ Name: Homework 5, Question 8, 9.
 
-# Question: 8
-# Which of the following is closest to Eout for N = 100?
-#
-# Question: 9
-#
-# How many epochs does it take on average for Logistic Regression to converge for N = 100 using the above 
-# initialization and termination rules and the specified learning rate? Pick the value that is closest to 
-# your results.
-#
+ Author: Ranaji Krishna.
+
+ Notes:
+ In this problem you will create your own target function f (probability in this case) and data set D to see 
+ how Logistic Regression works. For simplicity, we will take f to be a 0/1 probability so y is a deterministic 
+ function of x.
+ Take d=2 so you can visualize the problem, and let X = [-1, 1]x[-1, 1] with uniform probability of picking 
+ each x \ismem X . Choose a line in the plane as the boundary between f(x) = 1 (where y has to be +1) and f(x) = 0
+ (where y has to be -1) by taking two random, uniformly distributed points from X and taking the line passing through
+ 4 them as the boundary between y = +1 or -1. Pick N = 100 training points at random from X, and evaluate the outputs 
+ yn for each of these points xn. Run Logistic Regression with Stochastic Gradient Descent to find g, and 
+ estimate Eout (the cross entropy error) by generating a sufficiently large, separate set of points to evaluate the 
+ error. Repeat the experiment for 100 runs with different targets and take the average. Initialize the weight 
+ vector of Logistic Regression to all zeros in each run. Stop the algorithm when |w(t-1) - w(t)| < 0.01, 
+ where w(t) denotes the weight vector at the end of epoch t. An epoch is a full pass through the N data points 
+ (use a random permutation of 1, 2, . . . , N to present the data points to the algorithm within each epoch, 
+ and use different permutations for different epochs). Use a learning rate of 0.01.
+
+ Question: 8
+ Which of the following is closest to Eout for N = 100?
+
+ Question: 9
+
+ How many epochs does it take on average for Logistic Regression to converge for N = 100 using the above 
+ initialization and termination rules and the specified learning rate? Pick the value that is closest to 
+ your results.
+
+'''
 
 import sys
 import numpy as np
