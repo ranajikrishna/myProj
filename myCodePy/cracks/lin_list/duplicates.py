@@ -12,7 +12,7 @@ How would you solve this problem if a temporary buffer is not allowed?
 from myLib import *
 
 
-def remove(chk_list):
+def remove_dup(chk_list):
 
 	h_table = {'None':None}
 	this_node = chk_list.root
@@ -58,7 +58,7 @@ def main(argv = None):
 	myList.add(3)
 	myList.add(8)
 	myList.add(12)
-	remove(myList)
+	remove_dup(myList)
 
 	myList.show()
 
