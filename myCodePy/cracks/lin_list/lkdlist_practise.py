@@ -36,9 +36,6 @@ class linkedList(object):
 		
 	 	return None
 
-	def head(self):			# My code.
-		return(self.root)
-
 	def show(self):			# My code.
 		this_node = self.root
 

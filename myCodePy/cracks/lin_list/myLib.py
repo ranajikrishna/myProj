@@ -55,5 +55,5 @@ from datetime import date, datetime, timedelta
 import jedi
 
 import lkdList_example
-import lkdlist_practise
+import lkdList_practise
 

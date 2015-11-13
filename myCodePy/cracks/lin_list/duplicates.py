@@ -12,7 +12,7 @@ How would you solve this problem if a temporary buffer is not allowed?
 from myLib import *
 
 
-def remove_dup(chk_list):
+def remove_dup(chk_list):   # using myList = lkdlist_practise.linkedList()
 
 	h_table = {'None':None}
 	this_node = chk_list.root
@@ -27,7 +27,7 @@ def remove_dup(chk_list):
 
 	return(0)
 '''
-def remove(chk_list):
+def remove(chk_list):      # using myList = lkdList_example.linkedList()
 
 	h_table = {'None':None}
 	this_node = chk_list.head()
@@ -48,7 +48,7 @@ def remove(chk_list):
 def main(argv = None):
 
 #myList = lkdList_example.linkedList()
-	myList = lkdlist_practise.linkedList()
+	myList = lkdList_practise.linkedList()
 
 	myList.add(5)
 	myList.add(8)
