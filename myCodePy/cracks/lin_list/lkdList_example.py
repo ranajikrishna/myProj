@@ -1,6 +1,6 @@
 
 '''
-Name: Remove duplicates from list.
+Name: Partition a linked list.
 
 Author: Ranaji Krishna.
 
