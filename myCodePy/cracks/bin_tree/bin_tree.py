@@ -1,11 +1,10 @@
 
 '''
-Name: Check for a balanced tree`.
+Name: Binary Tree.
 
 Author: Ranaji Krishna.
 
 Notes:
-Implement a function to check if a binary tree is balanced. For the purposes of this question, a balanced tree is defined to be a tree such that the heights of the two subtrees of any node never differ by more than one.
 
 '''
 
@@ -32,16 +31,21 @@ class Tree(object):
 			self._add(self.root, val)
 
 	def _add(self, node, val):
-		if (node.val < val):
-			if node.rnode != None:
-				self._add(node.rnode, val)
+		if (self.root != None):
+			if (node.val < val):
+				if node.rnode != None:
+					self._add(node.rnode, val)
+				else:
+					node.rnode = Node(val)
 			else:
-				node.rnode = Node(val)
+				if node.lnode != None:
+					self._add(node.lnode, val)
+				else:
+					node.lnode = Node(val)
 		else:
-			if node.lnode != None:
-				self._add(node.lnode, val)
-			else:
-				node.lnode = Node(val)
+			self._add(self.root, val)
+
+
 
 	def print_tree(self):
 		if (self.root != None):
@@ -68,9 +72,10 @@ def main (argv = None):
 	tree.add(9)
 	tree.add(1)
 
-	return(0)
+	return(0) 
 
 
 if __name__ == '__main__':
 	status = main()
 	sys.exit(status)
+
