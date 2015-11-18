@@ -46,7 +46,9 @@ class node(object):
         	else:
 	            return self, parent
 
-	def pre_prnt(self):
+
+	# --- Depth first search ---
+	def pre_prnt(self):				# Pre-order
 		if (self):
 			print(self.val)
 			if (self.lnode):
@@ -54,7 +56,7 @@ class node(object):
 			if (self.rnode):
 				self.rnode.pre_prnt()
 
-	def in_prnt(self):
+	def in_prnt(self):				# In-order
 		if (self.lnode): 
 			self.lnode.in_prnt()
 		if(self):
@@ -63,7 +65,7 @@ class node(object):
 			self.rnode.in_prnt()
 
 
-	def post_prnt(self):
+	def post_prnt(self):				# Post-order
 		if (self.lnode): 
 			self.lnode.post_prnt()
 		if (self.rnode): 
@@ -71,11 +73,26 @@ class node(object):
 		if(self):
 			print(self.val)
 
+
+	# --- Breath first search ---
+	def bfs_prnt(self, queue = [None]):
+		if (queue[0] == None):
+			queue[0] = self
+		if (queue[0]):
+			print (queue[0].val)
+			del queue[0]
+			if (self.lnode):
+				queue.append(self.lnode)
+			if (self.rnode):
+				queue.append(self.rnode)
+			if (len(queue) != 0):
+				queue[0].bfs_prnt(queue)
+
+
 def main(argv = None):
 
 	tree = node(6)
 
-#tree.add(6)
 	tree.add(10)
 	tree.add(4)
 	tree.add(9)
@@ -87,7 +104,8 @@ def main(argv = None):
 	tree.add(1)
 	tree.add(3)
 
-	tree.post_prnt()
+#tree.post_prnt()
+	tree.bfs_prnt()
 	node1, parent = tree.lookup(3)
 	return(0)
 
