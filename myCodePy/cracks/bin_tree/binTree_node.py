@@ -88,7 +88,7 @@ class node(object):
 			if (len(queue) != 0):
 				queue[0].bfs_prnt(queue)
 
-
+'''
 def main(argv = None):
 
 	tree = node(6)
@@ -113,3 +113,5 @@ def main(argv = None):
 if __name__ == '__main__':
 	status = main()
 	sys.exit(status)
+
+'''
