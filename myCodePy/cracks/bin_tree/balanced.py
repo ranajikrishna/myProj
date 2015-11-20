@@ -22,7 +22,7 @@ def is_balanced(node):
 	if (node):
 		height_lnode = depth(node.lnode)
 		height_rnode = depth(node.rnode)
-		if (abs(height_lnode - height_rnode) < 2):
+		if (abs(height_lnode - height_rnode) <= 1):
 			l = is_balanced(node.lnode)
 			r = is_balanced(node.rnode)
 			if (l==1 and r ==1):
@@ -34,10 +34,7 @@ def is_balanced(node):
 	else:
 		return(1)
 
-
-
 def main(argv = None):
-
 
 	tree = binTree_node.node(6)
 

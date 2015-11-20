@@ -44,7 +44,6 @@ class linkedList(object):
 	def add(self,d):
 		new_node = node(d,self.root)
 		self.root = new_node
-		new_node.set_data(d)
 		self.size += 1
 
 	def head(self):			# My code.

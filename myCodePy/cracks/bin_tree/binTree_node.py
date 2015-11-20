@@ -20,7 +20,6 @@ class node(object):
 
 
 	def add(self, val):
-		if (self.val):
 			if (self.val < val):
 				if(self.rnode):
 					self.rnode.add(val)
@@ -31,8 +30,6 @@ class node(object):
 					self.lnode.add(val)
 				else:
 					self.lnode = node(val)
-		else:
-			self.val = val
 	
 	def lookup(self, val, parent =None):
         	if val < self.val:
@@ -55,9 +52,11 @@ class node(object):
 				self.lnode.pre_prnt()
 			if (self.rnode):
 				self.rnode.pre_prnt()
+			return(None)
+
 
 	def in_prnt(self):				# In-order
-		if (self.lnode): 
+		if (self.lnode):
 			self.lnode.in_prnt()
 		if(self):
 			print(self.val)
@@ -88,7 +87,7 @@ class node(object):
 			if (len(queue) != 0):
 				queue[0].bfs_prnt(queue)
 
-'''
+
 def main(argv = None):
 
 	tree = node(6)
@@ -104,9 +103,14 @@ def main(argv = None):
 	tree.add(1)
 	tree.add(3)
 
-#tree.post_prnt()
-	tree.bfs_prnt()
-	node1, parent = tree.lookup(3)
+#	tree.post_prnt()
+#	tree.bfs_prnt()
+#	node1, parent = tree.lookup(3)
+#	print(node1)
+#	print(parent)
+
+	tree.pre_prnt()
+
 	return(0)
 
 
@@ -114,4 +118,3 @@ if __name__ == '__main__':
 	status = main()
 	sys.exit(status)
 
-'''
