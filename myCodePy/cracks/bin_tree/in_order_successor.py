@@ -29,20 +29,17 @@ class node (object):
 			else:
 				self.lnode = node(val, self)
 
-
 def get_lnode(sub):
 	if(sub.parent.rnode == sub):
 		return(get_lnode(sub.parent))
 	else:
 		return(sub.parent)
 
-
 def in_order(sub):
 	if (sub.lnode):
 		return(in_order(sub.lnode))
 	else:
 		return(sub)
-
 
 def successor(sub):
 
@@ -55,7 +52,6 @@ def successor(sub):
 	else:
 		return(get_lnode(sub.parent))
 
-	
 def find_node(tree, val, sub = None):
 
 	if (tree):
@@ -67,7 +63,6 @@ def find_node(tree, val, sub = None):
 		return sub
 
 	return sub	
-
 
 def main(argv = None):
 
