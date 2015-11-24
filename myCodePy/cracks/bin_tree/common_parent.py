@@ -20,6 +20,7 @@ def bfs_search(node, p, q, chk, queue):
 	if (queue[0].rnode):
 		queue.append(queue[0].rnode)
 	del queue[0]
+
 	if (len(queue) != 0):
 		return(bfs_search(queue[0], p, q, chk, queue))	
 	
@@ -73,7 +74,6 @@ def main(argv = None):
 	print(com_node)
 	if(com_node):
 		print(com_node.val)
-
 
 	return(0)
 
