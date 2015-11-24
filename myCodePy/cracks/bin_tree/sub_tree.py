@@ -1,6 +1,6 @@
 
 '''
-Name: First common node.
+Name: Is it a sub-tree.
 
 Author: Ranaji Krishna.
 
