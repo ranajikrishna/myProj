@@ -59,7 +59,7 @@ def main(argv = None):
 	tree.add(13)
 	tree.add(15)
 	
-	tgt_sum = 41 
+	tgt_sum = 12 
 	pre_search(tree, tgt_sum, path = [tree])
 	
 	return(0)
