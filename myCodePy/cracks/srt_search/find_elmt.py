@@ -27,7 +27,7 @@ def find_elmt(A, left, right, tgt):
 		else:
 			return find_elmt(A, mid + 1, right, tgt)
 	
-	elif (A[mid] < A[right]):
+	elif (A[mid] < A[left]):
 		if (A[mid] <= tgt and tgt <= A[right]):
 			return find_elmt(A, mid + 1, right, tgt)
 		else:
@@ -46,11 +46,11 @@ def find_elmt(A, left, right, tgt):
 
 def main(argv = None):
 
-	tmp = np.sort(np.random.randint(0, 20, 7))	
-	A = np.sort(np.random.randint(21, 40, 5))	
+	tmp = np.sort(np.random.randint(0, 20, 18))	
+	A = np.sort(np.random.randint(21, 40, 10))	
 	A = np.concatenate((A,tmp),axis=0)
 
-	tgt = A[3]
+	tgt = A[7]
 	print(find_elmt(A, 0, len(A)-1, tgt))
 
 
