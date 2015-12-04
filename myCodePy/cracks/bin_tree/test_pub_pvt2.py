@@ -1,6 +1,9 @@
 '''
 Name: Tetsing pvt/pub members of a class.
 
+Author: Ranaji Krishna.
+
+
 Notes:
 (1) When we use from test_pub_pvt1 import *, the instance of a class is created using
 a = test(). If we use import test_pub_pvt1, then the instance of a class is created using
@@ -18,7 +21,7 @@ It should be considered an implementation detail and subject to change without n
 (3) A double underscore variable provides the capabilities of a private variable, i.e. it cannot be accessed from outside the 
 object (eg. print a.__var2 does not work). However, name mangling can be used to access the variable from outside the object
 by using object._classname__varname (eg. print a._test__var2). The properties of a private method is seen when inheritence is 
-used. Since __methodPvt is private, the child class 'child' of parent class 'test' cannot override the variables of the method.
+used. Since __methodPvt is private, the subclass 'child' of baseclass 'test' cannot override the variables of the method.
 Therefore c.methodPvt yields the contents of methodPvt in the class test (and not the contents of methodPvt in the class child).
 Similarly, c._test__methodPvt() yields the content of methodPvt in the class test. 
 Note1: Name mangling has to be used here since methodPvt is a private method (i.e. a.__methodPvt() will not work).
@@ -27,8 +30,8 @@ Note3: c._child__methodPvt won't work.
 
 (4) Variables inside methods can be read using the same syntax as for those inside constructors (regardless of methods being public
 or private). This means that name mangling has to be used for private variables (eg.a.__varPvt and a.__varPvtPub won't work). 
-Moreover, if a variable inside a private method of a child class does not appear in the respective method (private) 
-of the parent class, it cannot be read (eg. c._test__varNewPvt does not work; however c._varNewPub yields 2).
+Moreover, if a variable inside a private method of a subclass does not appear in the respective method (private) 
+of the baseclass, it cannot be read (eg. c._test__varNewPvt does not work; however c._varNewPub yields 2).
 '''
 
 import sys
