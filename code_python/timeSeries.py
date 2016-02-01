@@ -7,7 +7,6 @@ import numpy as np
 from pandas import Series, DataFrame, Panel
 
 
-
 def main(argv=None):
 
 	ao = np.loadtxt('/Users/vashishtha/myGitCode/myProj/myCodePy/timeSeriesData.txt')
