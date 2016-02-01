@@ -1,5 +1,0 @@
-magine you have some set of possible outcomes and an associated weight for each. For example:
-
-outcomes = {‘A’:0.1, ‘B’:0.5, ‘C’:0.2, ‘D’:0.15, ‘E’:0.05}
-
-In principle, the set of outcomes may be very large. How can we select one of the possible outcomes from the set in proportion to its weight? For example, with this particular set of outcomes, we would expect that 1000 samples would return *approximately* 500 ‘B’ values.
