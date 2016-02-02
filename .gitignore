@@ -5,4 +5,7 @@
 *.swp
 *.h5
 *.xlsx
+*.xls
 *.csv
+*.pkl
+
