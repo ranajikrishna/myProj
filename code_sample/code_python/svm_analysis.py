@@ -40,7 +40,7 @@ def sup_vec(data, C):
 	options = '-s 0 -t 1 -d 2 -r 1 -g 1 -c ' + str(C)  # Set Options.
 	prob = svm.svm_problem(np.array(data[2]).tolist(),\
 	                       np.array(data.loc[:, 0:1]).tolist())	# Set problem.
-	model = svm.svm_train(prob, options)		   # Call libsvm.
+	model = svm.svm_train(prob, options)		# Call libsvm.
 	
 	return(0)
 
@@ -89,8 +89,8 @@ def main (argv = None):
 	# --- Question 1 ---
 	w = pd.DataFrame(np.array([0, 1, -0.5], dtype = float))		# Weights.
 	class_pts = classify(data_train.loc[:, 3:4], w)			# Classifcation.
-	data_train[5] = class_pts[0] 			# Populate matrix.
-	data_train[6] = class_pts[1]			# Populate matrix.
+	data_train[5] = class_pts[0]		# Populate matrix.
+	data_train[6] = class_pts[1]		# Populate matrix.
 	dist = distance(data_train.loc[:, 3:4], w)	# Sum of Euclidean distances.
 
 	# Verification (0:match, 1:mis-match). 
